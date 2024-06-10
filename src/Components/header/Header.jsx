@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { NavLink, useNavigate, Link } from "react-router-dom";
 import { logo } from "../../Assets/img/index";
 import userIcon from "../../Assets/img/user-icon-1024x1024-dtzturco.png";
@@ -19,7 +19,6 @@ import { faCartPlus, faHouse } from "@fortawesome/free-solid-svg-icons";
 const Header = () => {
   const navigate = useNavigate();
   const userInfo = useSelector((state) => state.user.userInfo);
-  const isMobile = window.innerWidth < 768;
 
   // Subscribe to totalItems state
   const totalItems = useSelector((state) => state.cart.cart.totalItems);

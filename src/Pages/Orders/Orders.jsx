@@ -1,10 +1,10 @@
-import React from 'react';
-import { Container, Row, Col, Form, FormGroup } from 'react-bootstrap';
-import Helmet from '../../Components/Helmet/Helmet';
-import './Orders.css';
-import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import Summery from './Summery';
+import React from "react";
+import { Container, Row, Col, Form, FormGroup } from "react-bootstrap";
+import Helmet from "../../Components/Helmet/Helmet";
+import "./Orders.css";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import Summery from "./Summery";
 
 const Orders = () => {
   const userInfo = useSelector((state) => state.user.userInfo);
@@ -28,7 +28,7 @@ const Orders = () => {
                   placeholder="Enter Your Name"
                   name="name"
                   disabled
-                  value={userInfo.name || 'please update your name'}
+                  value={userInfo.name || "please update your name"}
                 />
               </FormGroup>
               <FormGroup className="form__group">
@@ -47,7 +47,7 @@ const Orders = () => {
                   name="phoneNumber"
                   disabled
                   value={
-                    userInfo.phoneNumber || 'please update your phone number'
+                    userInfo.phoneNumber || "please update your phone number"
                   }
                 />
               </FormGroup>
@@ -57,7 +57,7 @@ const Orders = () => {
                   placeholder="Street address"
                   name="address"
                   disabled
-                  value={userInfo.street || 'please update your street address'}
+                  value={userInfo.street || "please update your street address"}
                 />
               </FormGroup>
               <FormGroup className="form__group mb-10">
@@ -66,7 +66,7 @@ const Orders = () => {
                   placeholder="City"
                   name="city"
                   disabled
-                  value={userInfo.city || 'please update your city'}
+                  value={userInfo.city || "please update your city"}
                 />
               </FormGroup>
             </Form>

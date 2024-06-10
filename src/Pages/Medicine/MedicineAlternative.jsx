@@ -11,15 +11,18 @@ import "react-toastify/dist/ReactToastify.css";
 import { getCookie } from "../../Routers/ProtectedRoute";
 import { Link } from "react-router-dom";
 
+// MedicineAlternative Component: Renders alternative medicines based on active ingredient
 const MedicineAlternative = ({ id, category }) => {
   const [alternativeMedicines, setAlternativeMedicines] = useState([]);
   const dispatch = useDispatch();
   const userID = getCookie("id");
- const [showDetails, setShowDetails] = useState(false);
+  const [showDetails, setShowDetails] = useState(false);
   const toggleDetails = () => {
     setShowDetails(!showDetails);
     window.scrollTo(0, 0);
   };
+
+  // Fetch alternative medicines based on active ingredient
   useEffect(() => {
     const fetchAlternativeMedicines = async () => {
       try {
@@ -55,11 +58,12 @@ const MedicineAlternative = ({ id, category }) => {
     fetchAlternativeMedicines();
   }, [id, category]);
 
+  // Add product to cart
   const addToCart = async (product) => {
     if (product.id === 25) {
-      // عرض رسالة تنبيه للمستخدم هنا
+      // Show a warning message to the user
       toast.warning("This product is out of stock");
-      return; // عدم إضافة المنتج للسلة
+      return; // Do not add the product to the cart
     }
     try {
       await dispatch(
@@ -86,7 +90,6 @@ const MedicineAlternative = ({ id, category }) => {
   };
 
   const [userRating, setUserRating] = useState(0);
-  
 
   return (
     <>
@@ -104,16 +107,19 @@ const MedicineAlternative = ({ id, category }) => {
           </h2>
           {alternativeMedicines.map((medicine) => (
             <Col key={medicine.id}>
-              <Card style={{ height: "530px", width: "18rem" }} id="card-one"
-               className={`${
-                medicine.id === 25 && "border border-red-500 bg-red-300"
-              }`}
-              >
-                <div className={`card-body ${
+              <Card
+                style={{ height: "530px", width: "18rem" }}
+                id="card-one"
+                className={`${
                   medicine.id === 25 && "border border-red-500 bg-red-300"
-                }`}>
+                }`}
+              >
+                <div
+                  className={`card-body ${
+                    medicine.id === 25 && "border border-red-500 bg-red-300"
+                  }`}
+                >
                   <div className="icon">
-                    {/* تمرير دالة addToCart كـ onClick handler */}
                     <FontAwesomeIcon
                       icon={faCartPlus}
                       className="iconCarts"
@@ -147,72 +153,47 @@ const MedicineAlternative = ({ id, category }) => {
                     />
                   </div>
                   <h4
-                  style={{
-                    paddingBottom: "10px",
-                  }}
-                  className={`text__three ${
-                    medicine.id === 25 && "!text-white-500"
-                  }`}
-                >
-                  {medicine.id === 25 ? "Out of Stock" : "Available in:"}
-                </h4>
-                  {/* <div className="available__pharmacy flex items-center h-7 w-full">
-                    {medicine.pharmacies?.map((pharmacy, index) => (
-                      <span className="text-sm text-center" key={index}>
-                        ⚕ {pharmacy}
-                      </span>
-                    ))}
-                  </div> */}
+                    style={{
+                      paddingBottom: "10px",
+                    }}
+                    className={`text__three ${
+                      medicine.id === 25 && "!text-white-500"
+                    }`}
+                  >
+                    {medicine.id === 25 ? "Out of Stock" : "Available in:"}
+                  </h4>
                   {medicine.id !== 25 && (
-                  <div className="available__pharmacy h-7 w-full">
-                    {medicine.pharmacies?.map((pharmacy, index) => (
-                      <span key={index} className="text-sm text-center">
-                        ⚕ {pharmacy}
-                      </span>
-                    ))}
-                  </div>
-                )}
-                  {/* {medicine.id === 25 && (
-                    <button
-                      style={{
-                        backgroundColor: "#ff0000",
-                        color: "#ffffff",
-                        padding: "8px",
-                        border: "none",
-                        cursor: "not-allowed",
-                        borderRadius: "6px",
-                        fontSize: "14px",
-                        width: "100%",
-                      }}
-                      whileHover={{ scale: 1.1 }}
-                      className="out"
-                      disabled={true}
-                    >
-                      Out of Stock
-                    </button>
-                  )} */}
+                    <div className="available__pharmacy h-7 w-full">
+                      {medicine.pharmacies?.map((pharmacy, index) => (
+                        <span
+                          key={index}
+                          className="text-sm text-center"
+                        >{`⚕ ${pharmacy}`}</span>
+                      ))}
+                    </div>
+                  )}
                   {medicine.id === 25 ? (
-                  <Link to={`/product/${medicine.id}`}>
-                    <button
-                      style={{ marginTop: "55px" }}
-                      whileHover={{ scale: 1.1 }}
-                      className="showDetails bg-red-500 border-red-500 sm:w-30 sm:h-8 sm:text-sm"
-                      onClick={toggleDetails}
-                    >
-                      Show Details
-                    </button>
-                  </Link>
-                ) : (
-                  <Link to={`/product/${medicine.id}`}>
-                    <button
-                      style={{ marginTop: "5px" }}
-                      onClick={toggleDetails}
-                      className="showDetails sm:w-30 sm:h-8 sm:text-sm"
-                    >
-                      Show Details
-                    </button>
-                  </Link>
-                )}
+                    <Link to={`/product/${medicine.id}`}>
+                      <button
+                        style={{ marginTop: "55px" }}
+                        whileHover={{ scale: 1.1 }}
+                        className="showDetails bg-red-500 border-red-500 sm:w-30 sm:h-8 sm:text-sm"
+                        onClick={toggleDetails}
+                      >
+                        Show Details
+                      </button>
+                    </Link>
+                  ) : (
+                    <Link to={`/product/${medicine.id}`}>
+                      <button
+                        style={{ marginTop: "5px" }}
+                        onClick={toggleDetails}
+                        className="showDetails sm:w-30 sm:h-8 sm:text-sm"
+                      >
+                        Show Details
+                      </button>
+                    </Link>
+                  )}
                 </div>
               </Card>
             </Col>

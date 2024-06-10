@@ -2,30 +2,33 @@ import React, { useState } from "react";
 import CaresProduct from "./CaresProduct";
 import { Row, Col } from "react-bootstrap";
 import Helmet from "../../Components/Helmet/Helmet";
-const CaresView = (product) => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 10; // Number of products per page
 
-  // Calculate index of the first and last items to be displayed on the current page
+// CaresView component definition
+const CaresView = (product) => {
+  const [currentPage, setCurrentPage] = useState(1); // State for current page number
+  const itemsPerPage = 10; // Number of products to display per page
+
+  // Calculate the index of the last item on the current page
   const indexOfLastItem = currentPage * itemsPerPage;
+  // Calculate the index of the first item on the current page
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
 
-  // Slice the products array to get the products for the current page
+  // Get the products to be displayed on the current page
   const currentProducts = product.myProduct.slice(
     indexOfFirstItem,
     indexOfLastItem
   );
 
-  // Function to handle pagination
+  // Function to handle page number click
   const handlePaginationClick = (pageNumber) => {
-    setCurrentPage(pageNumber);
+    setCurrentPage(pageNumber); // Update the current page number
   };
 
   // Generate product items for the current page
   const productItems = currentProducts.map((product) => {
     return (
       <CaresProduct
-        key={product.id} // Use idProduct as the unique key
+        key={product.id} // Use product id as the unique key
         id={product.id}
         name={product.name}
         price={product.price}
@@ -37,7 +40,7 @@ const CaresView = (product) => {
     );
   });
 
-  // Calculate total number of pages
+  // Calculate the total number of pages needed
   const totalPages = Math.ceil(product.myProduct.length / itemsPerPage);
 
   // Generate pagination buttons
@@ -52,12 +55,16 @@ const CaresView = (product) => {
 
   return (
     <Helmet title="Cares">
+      {" "}
+      {/* Helmet component to set the page title */}
       <div>
         <div className="container">
           <Row className="content">
-            <Col className="cards">{productItems}</Col>
+            <Col className="cards">{productItems}</Col>{" "}
+            {/* Display the product items */}
           </Row>
-          <div className="pagination">{paginationButtons}</div>
+          <div className="pagination">{paginationButtons}</div>{" "}
+          {/* Display pagination buttons */}
         </div>
       </div>
     </Helmet>

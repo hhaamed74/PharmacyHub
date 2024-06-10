@@ -11,10 +11,12 @@ import "react-toastify/dist/ReactToastify.css";
 import StarsCustom from "../../Components/StarsCustom/StarsCustom";
 import { getCookie } from "../../Routers/ProtectedRoute";
 
+// EquipmentsProduct Component: Represents an individual equipment product card
 const EquipmentsProduct = (product) => {
   const dispatch = useDispatch();
   const id = getCookie("id");
 
+  // Function to add the product to the cart
   const addToCart = async () => {
     try {
       await dispatch(
@@ -33,20 +35,20 @@ const EquipmentsProduct = (product) => {
         })
       );
 
-      toast.success("Product added Successfully");
+      toast.success("Product added Successfully"); // Success toast
     } catch (error) {
       console.error("Error adding product to cart:", error);
-      toast.error("Failed to add product");
+      toast.error("Failed to add product"); // Error toast
     }
   };
 
-  const [showDetails, setShowDetails] = useState(false);
+  const [showDetails, setShowDetails] = useState(false); // State for showing details
   const toggleDetails = () => {
-    setShowDetails(!showDetails);
-    window.scrollTo(0, 0);
+    setShowDetails(!showDetails); // Toggle details visibility
+    window.scrollTo(0, 0); // Scroll to top
   };
 
-  const [userRating, setUserRating] = useState(0);
+  const [userRating, setUserRating] = useState(0); // State for user rating
 
   return (
     <div>

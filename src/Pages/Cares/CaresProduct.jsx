@@ -11,14 +11,17 @@ import "react-toastify/dist/ReactToastify.css";
 import StarsCustom from "../../Components/StarsCustom/StarsCustom";
 import { getCookie } from "../../Routers/ProtectedRoute";
 
+// CaresProduct component definition
 const CaresProduct = (product) => {
   const dispatch = useDispatch();
-  const id = getCookie("id");
+  const id = getCookie("id"); // Retrieve user ID from cookies
+
+  // Function to handle adding product to cart
   const addToCart = async () => {
     try {
       await dispatch(
         addItemToCart({
-          id: id,
+          id: id, // User ID
           items: [
             {
               id: product.id,
@@ -27,26 +30,25 @@ const CaresProduct = (product) => {
               pictureUrl: product.pictureUrl,
               category: product.category,
               pharmacies: product.pharmacies,
-              quantity: 1,
+              quantity: 1, // Default quantity to add
             },
           ],
         })
       );
-      toast.success("Product added Successfully");
+      toast.success("Product added Successfully"); // Show success toast message
     } catch (error) {
       console.error("Error adding product to cart:", error);
-      toast.error("Failed to add product");
+      toast.error("Failed to add product"); // Show error toast message
     }
   };
 
-  const [showDetails, setShowDetails] = useState(false);
+  const [showDetails, setShowDetails] = useState(false); // State to toggle product details
   const toggleDetails = () => {
-    setShowDetails(!showDetails);
-    window.scrollTo(0, 0);
+    setShowDetails(!showDetails); // Toggle details state
+    window.scrollTo(0, 0); // Scroll to top of the page
   };
 
-  // stars
-  const [userRating, setUserRating] = useState(0);
+  const [userRating, setUserRating] = useState(0); // State for user rating
 
   return (
     <div>
@@ -65,7 +67,7 @@ const CaresProduct = (product) => {
                   <FontAwesomeIcon
                     icon={faCartPlus}
                     className="iconCarts"
-                    onClick={addToCart}
+                    onClick={addToCart} // Add to cart on icon click
                   />
                 </div>
                 <div className="img">
@@ -84,7 +86,7 @@ const CaresProduct = (product) => {
                   <p className="text__two">
                     <span className="text__two__span">
                       {Math.ceil(product.price - product.price * 0.3)}{" "}
-                      <del>30%</del>
+                      <del>30%</del> {/* Show discount */}
                     </span>
                   </p>
                 </div>
@@ -93,7 +95,7 @@ const CaresProduct = (product) => {
                   <StarsCustom
                     totalStars={5}
                     initialRating={userRating}
-                    onChange={(rating) => setUserRating(rating)}
+                    onChange={(rating) => setUserRating(rating)} // Handle rating change
                   />
                 </div>
                 <h4
@@ -106,12 +108,8 @@ const CaresProduct = (product) => {
                 </h4>
                 <div className="flex items-center h-7 w-full">
                   {product.pharmacies?.map((pharmacy, index) => (
-                    <span
-                      style={{}}
-                      key={index}
-                      className="text-sm text-center p-1 "
-                    >
-                      ⚕{pharmacy}
+                    <span key={index} className="text-sm text-center p-1 ">
+                      ⚕{pharmacy} {/* List pharmacies */}
                     </span>
                   ))}
                 </div>
@@ -122,7 +120,7 @@ const CaresProduct = (product) => {
                     style={{
                       marginTop: "15px",
                     }}
-                    onClick={toggleDetails}
+                    onClick={toggleDetails} // Show details on button click
                     className="showDetails sm:w-30 sm:h-8 sm:text-sm"
                   >
                     Show Details

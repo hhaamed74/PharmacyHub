@@ -1,29 +1,29 @@
 import React, { useEffect, useState } from "react";
 import { Container, Row, Col, Form, Card } from "react-bootstrap";
-import { Prescription, Upload } from "../../Assets/img/index";
+import { Prescription, Upload } from "../../Assets/img/index"; // Importing images
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartPlus } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from "react-redux";
-import { addItemToCart } from "../../Redux/Slice/CartSlice";
-import "../../css/Cares.css";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import "./Search.css";
-import StarsCustom from "../StarsCustom/StarsCustom";
-import { Link } from "react-router-dom";
-import { getCookie } from "../../Routers/ProtectedRoute";
+import { addItemToCart } from "../../Redux/Slice/CartSlice"; // Importing Redux action
+import "../../css/Cares.css"; // Importing CSS file
+import { toast } from "react-toastify"; // Importing toast notification
+import "react-toastify/dist/ReactToastify.css"; // Importing toast notification CSS
+import "./Search.css"; // Importing Search component CSS
+import StarsCustom from "../StarsCustom/StarsCustom"; // Importing StarsCustom component
+import { Link } from "react-router-dom"; // Importing Link component
+import { getCookie } from "../../Routers/ProtectedRoute"; // Importing getCookie function
 
 const Search = () => {
-  const [userRating, setUserRating] = useState(0);
-  const [products, setProducts] = useState([]);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [showDetails, setShowDetails] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [userRating, setUserRating] = useState(0); // State for user rating
+  const [products, setProducts] = useState([]); // State for products data
+  const [searchQuery, setSearchQuery] = useState(""); // State for search query
+  const [showDetails, setShowDetails] = useState(false); // State for toggling product details
+  const [selectedImage, setSelectedImage] = useState(null); // State for selected image
   const [imageUploaded, setImageUploaded] = useState(false); // State to track if image is uploaded
 
-  const id = getCookie("id");
+  const id = getCookie("id"); // Get user ID from cookie
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch(); // Redux dispatch function
 
   // Function to handle image selection
   const handleImageSelect = (event) => {
@@ -31,7 +31,7 @@ const Search = () => {
     setImageUploaded(true);
   };
 
-  // Function to upload image
+  // Function to upload image to cloudinary
   const uploadImage = async () => {
     try {
       const formData = new FormData();
@@ -59,6 +59,7 @@ const Search = () => {
     }
   };
 
+  // Fetch data from API based on search query
   useEffect(() => {
     const fetchDataHandler = async () => {
       try {
@@ -71,7 +72,6 @@ const Search = () => {
           throw new Error("Failed to fetch data");
         }
         const responseData = await response.json();
-        // console.log('Response from API:', responseData); // Log raw response data
         const ProductData = responseData.data.map((product) => ({
           id: product.id,
           name: product.name,
@@ -89,23 +89,24 @@ const Search = () => {
     fetchDataHandler();
   }, [searchQuery]);
 
+  // Function to handle search input change
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
   };
 
+  // Function to toggle product details
   const toggleDetails = () => {
     setShowDetails(!showDetails);
     window.scrollTo(0, 0);
   };
 
+  // Function to add product to cart
   const addToCart = async (product) => {
     try {
       let imageUrl = null;
       if (selectedImage) {
         imageUrl = await uploadImage();
       }
-      console.log();
-      console.log(imageUrl);
       await dispatch(
         addItemToCart({
           id: id,
@@ -113,7 +114,7 @@ const Search = () => {
             {
               id: product.id.toString() || Math.random().toString(),
               name: product.name || Math.random().toString(),
-              pictureUrl: imageUrl || product.pictureUrl, // Use uploaded image URL if available, else use default
+              pictureUrl: imageUrl || product.pictureUrl,
               category: product.category || Math.random().toString(),
               price: product.price || Math.random().toString(),
               quantity: 1,
@@ -129,6 +130,7 @@ const Search = () => {
     }
   };
 
+  // Effect to add uploaded image to cart
   useEffect(() => {
     if (imageUploaded) {
       let staticProduct = {

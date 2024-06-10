@@ -1,9 +1,7 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
-import cart from './Slice/CartSlice';
-import user from './Slice/user';
-import deliveryMethods from './Slice/deliveryMethods';
-
-
+import cart from "./Slice/CartSlice";
+import user from "./Slice/user";
+import deliveryMethods from "./Slice/deliveryMethods";
 
 import {
   persistStore,
@@ -23,10 +21,9 @@ const persistConfig = {
   storage,
 };
 
-const rootReducer = combineReducers({  cart, user, deliveryMethods });
+const rootReducer = combineReducers({ cart, user, deliveryMethods });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
-
 
 export const store = configureStore({
   reducer: persistedReducer,

@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import EquipmentsProduct from "./EquipmentsProduct";
 import { Row, Col } from "react-bootstrap";
 import Helmet from "../../Components/Helmet/Helmet";
+
+// EquipmentsView Component: Renders the view for the Equipments category
 const EquipmentsView = (product) => {
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1); // State for current page
   const itemsPerPage = 12; // Number of products per page
 
   // Calculate index of the first and last items to be displayed on the current page
@@ -18,21 +20,21 @@ const EquipmentsView = (product) => {
 
   // Function to handle pagination
   const handlePaginationClick = (pageNumber) => {
-    setCurrentPage(pageNumber);
+    setCurrentPage(pageNumber); // Update current page
   };
 
   // Generate product items for the current page
   const productItems = currentProducts.map((product) => {
     return (
       <EquipmentsProduct
-      key={product.id} // Use idProduct as the unique key
-      id={product.id}
-      name={product.name}
-      price={product.price}
-      pictureUrl={product.pictureUrl}
-      category={product.category}
-      pharmacies={product.pharmacies}
-      quantity={product.quantity}
+        key={product.id} // Use idProduct as the unique key
+        id={product.id}
+        name={product.name}
+        price={product.price}
+        pictureUrl={product.pictureUrl}
+        category={product.category}
+        pharmacies={product.pharmacies}
+        quantity={product.quantity}
       />
     );
   });
@@ -52,12 +54,16 @@ const EquipmentsView = (product) => {
 
   return (
     <Helmet title="Cares">
+      {" "}
+      {/* Helmet component to set the page title */}
       <div>
         <div className="container">
           <Row className="content">
-            <Col className="cards">{productItems}</Col>
+            <Col className="cards">{productItems}</Col>{" "}
+            {/* Render product items */}
           </Row>
-          <div className="pagination">{paginationButtons}</div>
+          <div className="pagination">{paginationButtons}</div>{" "}
+          {/* Render pagination buttons */}
         </div>
       </div>
     </Helmet>

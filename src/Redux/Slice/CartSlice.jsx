@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { getCookie } from "../../Routers/ProtectedRoute";
-const token = getCookie("token");
+const token = getCookie("token"); // Get token from cookie
 
 const URL = "https://e-pharmacy.runasp.net/api/Basket";
 
@@ -15,7 +15,7 @@ const initialState = {
   error: null,
 };
 
-// Fetch cart from server
+// Async thunk to fetch cart from the server
 export const fetchCart = createAsyncThunk(
   "cart/fetchCart",
   async (_, thunkAPI) => {
@@ -44,6 +44,7 @@ export const fetchCart = createAsyncThunk(
   }
 );
 
+// Async thunk to add item to the cart
 export const addItemToCart = createAsyncThunk(
   "cart/addItemToCart",
   async (newItem, thunkAPI) => {
@@ -65,6 +66,7 @@ export const addItemToCart = createAsyncThunk(
   }
 );
 
+// Async thunk to remove item from the cart
 export const removeItemFromCart = createAsyncThunk(
   "cart/removeItemFromCart",
   async (itemId, thunkAPI) => {
@@ -84,7 +86,6 @@ export const removeItemFromCart = createAsyncThunk(
       }
 
       const data = await response.json();
-      // console.log(data);
       return data;
     } catch (error) {
       return rejectWithValue(error.message || "An error occurred");
@@ -92,10 +93,11 @@ export const removeItemFromCart = createAsyncThunk(
   }
 );
 
+// Create cart slice
 const cartSlice = createSlice({
   name: "cart",
   initialState,
-  reducers: {},
+  reducers: {}, // No reducers defined
   extraReducers: (builder) => {
     builder
       .addCase(fetchCart.pending, (state) => {
@@ -111,8 +113,7 @@ const cartSlice = createSlice({
       })
       .addCase(addItemToCart.pending, (state, action) => {
         state.status = "loading";
-      });
-    builder
+      })
       .addCase(addItemToCart.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.cart.items.push(action.payload);
@@ -131,7 +132,6 @@ const cartSlice = createSlice({
         state.status = "succeeded";
         state.cart = action.payload;
         state.cart.items.pop(action.payload);
-        // console.log(action.payload);
         state.cart.totalAmount -=
           action.payload.price * action.payload.quantity;
         state.cart.totalItems -= 1;
@@ -142,4 +142,5 @@ const cartSlice = createSlice({
       });
   },
 });
+
 export default cartSlice.reducer;

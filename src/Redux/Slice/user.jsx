@@ -1,107 +1,122 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { getCookie } from '../../Routers/ProtectedRoute';
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { getCookie } from "../../Routers/ProtectedRoute";
 
-const URL = 'https://e-pharmacy.runasp.net/api/account';
+const URL = "https://e-pharmacy.runasp.net/api/account";
 
+// Async thunk for user login
 export const logIn = createAsyncThunk(
-  'user/logIn',
+  "user/logIn",
   async (values, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
 
     try {
+      // Send POST request to login endpoint
       const response = await fetch(`${URL}/login`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json; charset=utf-8',
+          "Content-Type": "application/json; charset=utf-8",
         },
         body: JSON.stringify(values),
       });
+      // Extract data from the response
       const data = await response.json();
+      // Set cookies for token and user id
       document.cookie = `token=${data.token}`;
       document.cookie = `id=${data.id}`;
       return data;
     } catch (error) {
       rejectWithValue(error);
     }
-  },
+  }
 );
 
+// Async thunk for user registration
 export const register = createAsyncThunk(
-  'user/register',
+  "user/register",
   async (values, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
 
     try {
+      // Send POST request to register endpoint
       const response = await fetch(`${URL}/register`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json; charset=utf-8',
+          "Content-Type": "application/json; charset=utf-8",
         },
         body: JSON.stringify(values),
       });
+      // Extract data from the response
       const data = await response.json();
       return data;
     } catch (error) {
       rejectWithValue(error);
     }
-  },
+  }
 );
 
-// update user data
+// Async thunk for updating user data
 export const updateUser = createAsyncThunk(
-  'user/updateUser',
+  "user/updateUser",
   async (values, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
-    const token = getCookie('token'); // Retrieve the token
+    const token = getCookie("token"); // Retrieve the token
+
     try {
+      // Send PUT request to update user data
       const response = await fetch(`${URL}`, {
-        method: 'PUT',
+        method: "PUT",
         headers: {
-          'Content-Type': 'application/json; charset=utf-8',
+          "Content-Type": "application/json; charset=utf-8",
           Authorization: `Bearer ${token}`, // Include the token in the Authorization header
         },
         body: JSON.stringify(values),
       });
+      // Extract data from the response
       const data = await response.json();
       return data;
     } catch (error) {
       rejectWithValue(error);
     }
-  },
-);
-// change Password
-export const changePassword = createAsyncThunk(
-  'user/changePassword',
-  async (values, thunkAPI) => {
-    const { rejectWithValue } = thunkAPI;
-    const token = getCookie('token'); // Retrieve the token
-    try {
-      const response = await fetch(`${URL}/ChangePassword`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json; charset=utf-8',
-          Authorization: `Bearer ${token}`, // Include the token in the Authorization header
-        },
-        body: JSON.stringify(values),
-      });
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      rejectWithValue(error);
-    }
-  },
+  }
 );
 
+// Async thunk for changing user password
+export const changePassword = createAsyncThunk(
+  "user/changePassword",
+  async (values, thunkAPI) => {
+    const { rejectWithValue } = thunkAPI;
+    const token = getCookie("token"); // Retrieve the token
+
+    try {
+      // Send POST request to change password endpoint
+      const response = await fetch(`${URL}/ChangePassword`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json; charset=utf-8",
+          Authorization: `Bearer ${token}`, // Include the token in the Authorization header
+        },
+        body: JSON.stringify(values),
+      });
+      // Extract data from the response
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      rejectWithValue(error);
+    }
+  }
+);
+
+// Create user slice
 const userSlice = createSlice({
-  name: 'user',
+  name: "user",
   initialState: {
-    userInfo: null, // Changed to null to match the shape of the returned data
-    loading: false,
-    error: null,
+    userInfo: null, // Initialize user info to null
+    loading: false, // Set loading to false initially
+    error: null, // Set error to null initially
   },
-  reducers: {}, // Add any other reducers here if needed
+  reducers: {}, // No reducers defined
   extraReducers: (builder) => {
-    // login
+    // Reducers for login, register, update user data, and change password async thunks
     builder
       .addCase(logIn.pending, (state) => {
         state.loading = true;
@@ -115,7 +130,6 @@ const userSlice = createSlice({
         state.loading = false;
         state.error = action.payload;
       })
-      // register
       .addCase(register.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -127,9 +141,7 @@ const userSlice = createSlice({
       .addCase(register.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
-      });
-      // update user data
-      builder
+      })
       .addCase(updateUser.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -141,9 +153,7 @@ const userSlice = createSlice({
       .addCase(updateUser.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
-      });
-      // change Password
-      builder
+      })
       .addCase(changePassword.pending, (state) => {
         state.loading = true;
         state.error = null;

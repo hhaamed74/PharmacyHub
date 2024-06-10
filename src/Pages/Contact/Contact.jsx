@@ -4,39 +4,48 @@ import { Row } from "react-bootstrap";
 import "../../css/Contact.css";
 import Helmet from "../../Components/Helmet/Helmet";
 
+// Contact component definition
 const Contact = () => {
-    const form = useRef();
+    const form = useRef(); // UseRef hook to access form element
 
+    // Function to send email using emailjs
     const sendEmail = (e) => {
-        e.preventDefault();
+        e.preventDefault(); // Prevent default form submission behavior
 
         emailjs
-            .sendForm("service_wp60rso", "template_7jz2cnn", form.current, {
-                publicKey: "6XnaLBqYtVAVFaMyz",
-            })
+            .sendForm(
+                "service_wp60rso", // Service ID
+                "template_7jz2cnn", // Template ID
+                form.current, // Form element
+                "6XnaLBqYtVAVFaMyz" // Public key
+            )
             .then(
                 () => {
-                    // console.log("SUCCESS!");
+                    // Handle success (Optional: You can add success notification here)
                 },
                 (error) => {
-                    // console.log("FAILED...", error.text);
+                    // Handle error (Optional: You can add error notification here)
+                    console.error("FAILED...", error.text);
                 }
             );
     };
+
     return (
         <Helmet title="Contact us">
+            {" "}
+            {/* Helmet component to set the page title */}
             <div className="container">
                 <Row>
                     <p className="contact-text">
-                        We will happy to receive your inquiries and suggestions.
+                        We are happy to receive your inquiries and suggestions.
                     </p>
                 </Row>
                 <form
                     style={{
                         maxWidth: "50%",
                     }}
-                    ref={form}
-                    onSubmit={sendEmail}
+                    ref={form} // Reference to form element
+                    onSubmit={sendEmail} // Form submission handler
                 >
                     <Row>
                         <label htmlFor="first">First Name</label>
@@ -74,7 +83,8 @@ const Contact = () => {
                         <textarea id="comment" name="message"></textarea>
                     </Row>
                     <div className="form-btn">
-                        <input type="submit" value="Send"></input>
+                        <input type="submit" value="Send"></input>{" "}
+                        {/* Submit button */}
                     </div>
                 </form>
             </div>

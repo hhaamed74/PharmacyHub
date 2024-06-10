@@ -12,9 +12,13 @@ import StarsCustom from "../../Components/StarsCustom/StarsCustom";
 import { getCookie } from "../../Routers/ProtectedRoute";
 
 const VitaminsProduct = (product) => {
+  // Redux dispatch hook
   const dispatch = useDispatch();
+
+  // Get user ID from cookies
   const id = getCookie("id");
 
+  // Function to add item to cart
   const addToCart = async () => {
     try {
       await dispatch(
@@ -36,11 +40,16 @@ const VitaminsProduct = (product) => {
     toast.success("Product added Successfully");
   };
 
+  // State for toggling details view
   const [showDetails, setShowDetails] = useState(false);
+
+  // Function to toggle details view
   const toggleDetails = () => {
     setShowDetails(!showDetails);
     window.scrollTo(0, 0);
   };
+
+  // State for user rating
   const [userRating, setUserRating] = useState(0);
 
   return (
@@ -48,6 +57,7 @@ const VitaminsProduct = (product) => {
       <div className="container">
         <Row>
           <Col>
+            {/* Product card */}
             <Card
               style={{
                 height: "560px",
@@ -56,6 +66,7 @@ const VitaminsProduct = (product) => {
               id="card-one"
             >
               <div className="card-body">
+                {/* Add to cart icon */}
                 <div className="icon">
                   <FontAwesomeIcon
                     icon={faCartPlus}
@@ -63,6 +74,7 @@ const VitaminsProduct = (product) => {
                     onClick={addToCart}
                   />
                 </div>
+                {/* Product image */}
                 <div className="img">
                   <img
                     whileHover={{ scale: 1.1 }}
@@ -71,11 +83,15 @@ const VitaminsProduct = (product) => {
                     className="cardImage"
                   />
                 </div>
+                {/* Divider */}
                 <div className="divider"></div>
+                {/* Product name */}
                 <h3 className="!text-lg">{product.name}</h3>
 
+                {/* Product price */}
                 <div className="text">
                   <p className="text__one">{product.price} EGP</p>
+                  {/* Discounted price */}
                   <p className="text__two">
                     <span className="text__two__span">
                       {Math.ceil(product.price - product.price * 0.3)}{" "}
@@ -84,6 +100,7 @@ const VitaminsProduct = (product) => {
                   </p>
                 </div>
 
+                {/* Star rating */}
                 <div className="star">
                   <StarsCustom
                     totalStars={5}
@@ -91,6 +108,7 @@ const VitaminsProduct = (product) => {
                     onChange={(rating) => setUserRating(rating)}
                   />
                 </div>
+                {/* Available pharmacies */}
                 <h4
                   style={{
                     paddingBottom: "10px",
@@ -104,8 +122,9 @@ const VitaminsProduct = (product) => {
                     <span key={index}>⚕ {pharmacy}</span>
                   ))}
                 </div>
-                {/* Add the button to toggle details */}
+                {/* Button to show details */}
                 {product.id === 25 ? (
+                  // Button disabled if product is out of stock
                   <button
                     whileHover={{ scale: 1.1 }}
                     className="outOfStock"
@@ -114,6 +133,7 @@ const VitaminsProduct = (product) => {
                     Show Details{" "}
                   </button>
                 ) : (
+                  // Link to product details page
                   <Link to={`/product/${product.id}`}>
                     <button
                       whileHover={{ scale: 1.1 }}

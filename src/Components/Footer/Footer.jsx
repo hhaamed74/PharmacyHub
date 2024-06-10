@@ -28,7 +28,6 @@ const Footer = () => {
         <Col lg="4" sm="12" id="third-col">
           <h3>Need Help?</h3>
           <Link to="/contact">Contact Us</Link>
-          <Link to="/ourTeam">Our Team</Link>
           <Link to="/about">About Us</Link>
           <Link to="/equipments">Equipments</Link>
         </Col>

@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import VitaminsProduct from "./VitaminsProduct";
+import VitaminsProduct from "./VitaminsProduct"; // Import individual product component
 import { Row, Col } from "react-bootstrap";
 import Helmet from "../../Components/Helmet/Helmet";
+
 const VitaminsView = (product) => {
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1); // State for current page number
   const itemsPerPage = 12; // Number of products per page
 
   // Calculate index of the first and last items to be displayed on the current page
@@ -25,14 +26,14 @@ const VitaminsView = (product) => {
   const productItems = currentProducts.map((product) => {
     return (
       <VitaminsProduct
-      key={product.id} // Use idProduct as the unique key
-      id={product.id}
-      name={product.name}
-      price={product.price}
-      pictureUrl={product.pictureUrl}
-      category={product.category}
-      pharmacies={product.pharmacies}
-      quantity={product.quantity}
+        key={product.id} // Use idProduct as the unique key
+        id={product.id}
+        name={product.name}
+        price={product.price}
+        pictureUrl={product.pictureUrl}
+        category={product.category}
+        pharmacies={product.pharmacies}
+        quantity={product.quantity}
       />
     );
   });
@@ -53,11 +54,13 @@ const VitaminsView = (product) => {
   return (
     <Helmet title="Cares">
       <div>
+        {/* Container for product grid */}
         <div className="container">
           <Row className="content">
-            <Col className="cards">{productItems}</Col>
+            <Col className="cards">{productItems}</Col> {/* Product items */}
           </Row>
-          <div className="pagination">{paginationButtons}</div>
+          <div className="pagination">{paginationButtons}</div>{" "}
+          {/* Pagination buttons */}
         </div>
       </div>
     </Helmet>

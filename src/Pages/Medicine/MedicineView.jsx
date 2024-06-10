@@ -3,7 +3,8 @@ import MedicineProduct from "./MedicineProduct";
 import { Row, Col } from "react-bootstrap";
 import Helmet from "../../Components/Helmet/Helmet";
 
-const MedicineView = (product) => {
+const MedicineView = ({ myProduct }) => {
+  // Destructure `myProduct` from props
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 12; // Number of products per page
 
@@ -12,10 +13,7 @@ const MedicineView = (product) => {
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
 
   // Slice the products array to get the products for the current page
-  const currentProducts = product.myProduct.slice(
-    indexOfFirstItem,
-    indexOfLastItem
-  );
+  const currentProducts = myProduct.slice(indexOfFirstItem, indexOfLastItem);
 
   // Function to handle pagination
   const handlePaginationClick = (pageNumber) => {
@@ -26,20 +24,14 @@ const MedicineView = (product) => {
   const productItems = currentProducts.map((product) => {
     return (
       <MedicineProduct
-      key={product.id} // Use idProduct as the unique key
-      id={product.id}
-      name={product.name}
-      price={product.price}
-      pictureUrl={product.pictureUrl}
-      category={product.category}
-      pharmacies={product.pharmacies}
-      quantity={product.quantity}
+        key={product.id} // Use idProduct as the unique key
+        product={product} // Pass the entire product object as props
       />
     );
   });
 
   // Calculate total number of pages
-  const totalPages = Math.ceil(product.myProduct.length / itemsPerPage);
+  const totalPages = Math.ceil(myProduct.length / itemsPerPage);
 
   // Generate pagination buttons
   const paginationButtons = [];
