@@ -118,9 +118,9 @@ const CaresProduct = (product) => {
                   <button
                     whileHover={{ scale: 1.1 }}
                     style={{
-                      marginTop: "15px",
+                      marginTop: "30px",
                     }}
-                    onClick={toggleDetails} // Show details on button click
+                    onClick={toggleDetails}
                     className="showDetails sm:w-30 sm:h-8 sm:text-sm"
                   >
                     Show Details

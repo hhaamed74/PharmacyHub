@@ -15,7 +15,6 @@ const MedicineProduct = (product) => {
   const dispatch = useDispatch();
   const id = getCookie("id");
 
-  // Important: This check is for product with ID 25
   const addToCart = async () => {
     if (product.id === 25) {
       // عرض رسالة تنبيه للمستخدم هنا

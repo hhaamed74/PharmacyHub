@@ -18,8 +18,8 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  padding-top: 15px;
   background-color: #e5e0e001;
+  margin-bottom: 50px;
 }
 
 .cards {
@@ -211,12 +211,13 @@
 
 @media only screen and (max-width: 992px) {
   .showDetails {
-    /* margin-top: 20px !important; */
+    margin-top: 20px !important;
     display: block;
     margin: 0 auto;
     width: 150px;
     height: 60px;
     padding-bottom: 30px;
+    margin-bottom: 30px;
   }
 }
 
