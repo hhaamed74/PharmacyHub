@@ -57,9 +57,8 @@ const MedicineAlternative = ({ id, category }) => {
 
   const addToCart = async (product) => {
     if (product.id === 25) {
-      // عرض رسالة تنبيه للمستخدم هنا
       toast.warning("This product is out of stock");
-      return; // عدم إضافة المنتج للسلة
+      return;
     }
     try {
       await dispatch(
@@ -159,13 +158,7 @@ const MedicineAlternative = ({ id, category }) => {
                   >
                     {medicine.id === 25 ? "Out of Stock" : "Available in:"}
                   </h4>
-                  {/* <div className="available__pharmacy flex items-center h-7 w-full">
-                    {medicine.pharmacies?.map((pharmacy, index) => (
-                      <span className="text-sm text-center" key={index}>
-                        ⚕ {pharmacy}
-                      </span>
-                    ))}
-                  </div> */}
+
                   {medicine.id !== 25 && (
                     <div className="available__pharmacy h-7 w-full">
                       {medicine.pharmacies?.map((pharmacy, index) => (
@@ -175,25 +168,7 @@ const MedicineAlternative = ({ id, category }) => {
                       ))}
                     </div>
                   )}
-                  {/* {medicine.id === 25 && (
-                    <button
-                      style={{
-                        backgroundColor: "#ff0000",
-                        color: "#ffffff",
-                        padding: "8px",
-                        border: "none",
-                        cursor: "not-allowed",
-                        borderRadius: "6px",
-                        fontSize: "14px",
-                        width: "100%",
-                      }}
-                      whileHover={{ scale: 1.1 }}
-                      className="out"
-                      disabled={true}
-                    >
-                      Out of Stock
-                    </button>
-                  )} */}
+
                   {medicine.id === 25 ? (
                     <Link to={`/product/${medicine.id}`}>
                       <button
