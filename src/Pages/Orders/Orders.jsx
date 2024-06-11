@@ -14,11 +14,11 @@ const Orders = () => {
       <Container>
         <Row className=" justify-center">
           <Col lg="8" sm="12" className="px-4">
-            <h6>Billing Information</h6>
+            <h6 className="bill__text">Billing Information</h6>
 
             <Form className="billing__form !mt-0">
               <div className="flex items-center justify-end">
-                <Link to="/profile" className="capitalize">
+                <Link to="/profile" className="change__Address capitalize">
                   want to Change Address ?
                 </Link>
               </div>

@@ -74,7 +74,8 @@ const Footer = () => {
       </Row>
       <Row>
         <p className="footer__copyRight">
-          CopyRight <span>{year}</span> developed by <span>spider Team </span>
+          CopyRight <span>{year}</span> developed by{" "}
+          <span>Graduation project team </span>
           All rights reversed.
         </p>
       </Row>

@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 import { updateUser } from "../../Redux/Slice/user";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
-
+import "./Profile.css";
 const Profile = () => {
   // Selecting user information from Redux store
   const userInfo = useSelector((state) => state.user.userInfo);
@@ -56,8 +56,7 @@ const Profile = () => {
         {/* Profile update form */}
         <Col md={10} className="mb-12">
           <div id="profile">
-            <h2>Profile</h2>
-            <Form onSubmit={handleUpdate}>
+            <Form onSubmit={handleUpdate} className="profile__form">
               {/* Name field */}
               <FormGroup className="form__groups">
                 <Form.Label htmlFor="name" className="pb-0">
@@ -136,7 +135,17 @@ const Profile = () => {
               </FormGroup>
 
               {/* Save button */}
-              <Button variant="success" type="submit">
+              <Button
+                style={{
+                  backgroundColor: "#13a03b",
+                  color: "#f7f7f7",
+                  border: "1px solid #13a03b",
+                  padding: "10px",
+                  width: "50%",
+                  margin: "0 auto",
+                }}
+                type="submit"
+              >
                 Save
               </Button>
             </Form>

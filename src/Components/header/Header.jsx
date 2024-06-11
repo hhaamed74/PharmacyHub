@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink, useNavigate, Link } from "react-router-dom";
 import { logo } from "../../Assets/img/index";
 import userIcon from "../../Assets/img/user-icon-1024x1024-dtzturco.png";
@@ -17,6 +17,9 @@ import Offcanvas from "react-bootstrap/Offcanvas";
 import { faCartPlus, faHouse } from "@fortawesome/free-solid-svg-icons";
 
 const Header = () => {
+  // eslint-disable-next-line no-unused-vars
+  const [hover, setHover] = useState(false);
+
   const navigate = useNavigate();
   const userInfo = useSelector((state) => state.user.userInfo);
 
@@ -123,15 +126,36 @@ const Header = () => {
                         id={`offcanvasNavbarDropdown-expand-${expand}`}
                       >
                         <div className="flex flex-col px-3 gap-2 text-white text-lg">
-                          <NavLink to="/profile" className="text-whit">
+                          <NavLink
+                            to="/profile"
+                            className="text-whit"
+                            style={{
+                              color: hover ? "#0d6efd" : "#27b43e", // change the color on hover
+                              fontWeight: "700",
+                            }}
+                          >
                             Profile
                           </NavLink>
-                          <NavLink to="/orders" className="text-whit">
+                          <NavLink
+                            to="/orders"
+                            className="text-whit"
+                            style={{
+                              color: hover ? "#0d6efd" : "#27b43e", // change the color on hover
+                              fontWeight: "700",
+                            }}
+                          >
                             Orders
                           </NavLink>
                         </div>
                         <NavDropdown.Divider />
-                        <NavDropdown.Item href="#" onClick={logout}>
+                        <NavDropdown.Item
+                          href="#"
+                          onClick={logout}
+                          style={{
+                            color: hover ? "#0d6efd" : "#27b43e", // change the color on hover
+                            fontWeight: "700",
+                          }}
+                        >
                           Logout
                         </NavDropdown.Item>
                       </NavDropdown>

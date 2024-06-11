@@ -90,11 +90,11 @@ const Carts = () => {
                         />
                       </div>
                       <h4 className="text__three">
-                        Category: {product.category}
+                        Category: <span>{product.category}</span>
                       </h4>
-                      <div className="flex items-center justify-center mt-4">
+                      <div className="deleteBtn flex items-center justify-center">
                         <button
-                          className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mt-2"
+                          className="delete"
                           onClick={() => deleteProduct(USERID)} // Delete product on button click
                         >
                           Delete

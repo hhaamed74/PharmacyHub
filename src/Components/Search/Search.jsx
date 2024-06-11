@@ -135,8 +135,8 @@ const Search = () => {
     if (imageUploaded) {
       let staticProduct = {
         id: 5,
-        name: "Uploaded image",
-        category: "ٍAny Thing",
+        name: "Bill OR Product name",
+        category: "Medicine",
         price: 99,
         quantity: 1,
       };

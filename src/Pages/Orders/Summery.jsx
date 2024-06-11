@@ -4,7 +4,7 @@ import { getCookie } from "../../Routers/ProtectedRoute";
 import { Link } from "react-router-dom";
 import { fetchDeliveryMethods } from "../../Redux/Slice/deliveryMethods";
 import { useDispatch } from "react-redux";
-
+import "./Summery.css";
 function Summary() {
   // Selectors
   const cartItems = useSelector((state) => state.cart.cart.items);
@@ -143,7 +143,15 @@ function Summary() {
     content = <div>Loading...</div>;
   } else if (status === "succeeded") {
     content = (
-      <select value={selectedMethodId} onChange={handleSelectChange}>
+      <select
+        value={selectedMethodId}
+        onChange={handleSelectChange}
+        style={{
+          padding: "10px 20px",
+          fontWeight: "bold",
+          marginTop: "20px",
+        }}
+      >
         <option value="" disabled>
           Select a delivery method
         </option>
@@ -199,18 +207,32 @@ function Summary() {
                 <div className="d-flex align-items-center">
                   {/* Button to decrease quantity */}
                   <button
-                    className="btn btn-sm btn-primary me-2"
+                    className="btn btn-sm me-2"
                     onClick={() => decreaseQuantity(item.id)}
+                    style={{
+                      backgroundColor: "#27b43e",
+                      color: "#f7f7f7",
+                    }}
                   >
                     -
                   </button>
-                  <span className="badge bg-primary rounded-pill">
+                  <span
+                    className="badge rounded-pill"
+                    style={{
+                      backgroundColor: "#27b43e",
+                      color: "#f7f7f7",
+                    }}
+                  >
                     {quantities[item.id]}
                   </span>
                   {/* Button to increase quantity */}
                   <button
-                    className="btn btn-sm btn-primary ms-2"
+                    className="btn btn-sm ms-2"
                     onClick={() => increaseQuantity(item.id)}
+                    style={{
+                      backgroundColor: "#27b43e",
+                      color: "#f7f7f7",
+                    }}
                   >
                     +
                   </button>
@@ -236,29 +258,46 @@ function Summary() {
           </div>
         </div>
       </div>
-      <section>
+
+      {/* Delivery Methods */}
+
+      <section className="delivery">
         <h6 className="mt-4">Delivery Methods</h6>
         {/* Dropdown for selecting delivery method */}
         {content}
         {/* Details of selected delivery method */}
         {selectedMethodId && (
-          <div>
-            <h5 className="mt-2">Selected Delivery Method Details</h5>
+          <div className="methods">
+            <h5 className="mt-2">Selected Delivery Method Details st</h5>
             {deliveryMethods
               .filter((method) => method.id === parseInt(selectedMethodId))
               .map((method) => (
-                <div key={method.id}>
-                  <p>Name: {method.name}</p>
-                  <p>Description: {method.description}</p>
-                  <p>Cost: ${method.cost}</p>
-                  <p>Delivery Time: {method.deliveryTime}</p>
+                <div key={method.id} className="method__details">
+                  <p>
+                    Name: <span>{method.name}</span>
+                  </p>
+                  <p>
+                    Description: <span>{method.description}</span>
+                  </p>
+                  <p>
+                    Cost: <span>${method.cost}</span>
+                  </p>
+                  <p>
+                    Delivery Time: <span>{method.deliveryTime}</span>
+                  </p>
                 </div>
               ))}
           </div>
         )}
       </section>
       {/* Checkout button */}
-      <button className="btn btn-success mt-4 w-full my-8">
+      <button
+        className="btn mt-4 w-full my-8"
+        style={{
+          backgroundColor: "#13a03b",
+          border: "1px solid #13a03b",
+        }}
+      >
         <Link
           style={{
             color: "white",

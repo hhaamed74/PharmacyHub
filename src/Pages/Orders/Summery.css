@@ -1,0 +1,26 @@
+.delivery h6 {
+  font-size: 18px;
+  font-weight: bold;
+  color: #27b43e;
+  text-align: center;
+  background-color: #e5e0e021;
+  padding: 10px 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: fit-content;
+}
+
+.methods h5 {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.methods .method__details p {
+  color: #27b43e;
+  font-weight: 700;
+}
+
+.methods .method__details p span {
+  color: #000000;
+  font-weight: 700;
+}

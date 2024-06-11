@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { changePassword } from "../../Redux/Slice/user";
 import Menu from "../../Components/Menu";
-
+import "./ChangePassword.css";
 const ChangePassword = () => {
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
@@ -50,7 +50,6 @@ const ChangePassword = () => {
         </Col>
         <Col md={10} className="mb-12">
           <div id="change-password">
-            <h2>Change Password</h2>
             {/* Password change form */}
             <Form onSubmit={sign}>
               <FormGroup className="form__groups">
@@ -78,7 +77,14 @@ const ChangePassword = () => {
                 type="submit"
                 className="buy_btn auth_btn"
                 disabled={loading}
-                variant="success"
+                style={{
+                  backgroundColor: "#13a03b",
+                  color: "#f7f7f7",
+                  border: "1px solid #13a03b",
+                  padding: "10px",
+                  width: "50%",
+                  margin: "0 auto",
+                }}
               >
                 {/* Show loading text when submitting */}
                 {loading ? "Loading..." : "Change Password"}
