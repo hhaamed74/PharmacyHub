@@ -34,7 +34,7 @@ const Contact = () => {
         <Helmet title="Contact us">
             {" "}
             {/* Helmet component to set the page title */}
-            <div className="container">
+            <div className="container contact">
                 <Row>
                     <p className="contact-text">
                         We are happy to receive your inquiries and suggestions.
@@ -60,15 +60,7 @@ const Contact = () => {
                         <label htmlFor="last">Last Name</label>
                         <input type="text" id="last" placeholder="Last Name" />
                     </Row>
-                    <Row>
-                        <label htmlFor="phone">Phone Number</label>
-                        <input
-                            type="number"
-                            id="phone"
-                            name="user_Phone"
-                            placeholder="Phone Number"
-                        />
-                    </Row>
+
                     <Row>
                         <label htmlFor="email">Email</label>
                         <input

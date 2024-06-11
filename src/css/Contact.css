@@ -84,3 +84,18 @@ form .form-btn input {
     box-shadow: 0px 0px 3px 3px #f7f7f7;
   }
 }
+
+@media only screen and (max-width: 992px) {
+  .container .row .contact-text {
+    font-size: 20px;
+    font-weight: bold;
+    color: #18893a;
+    text-align: center;
+  }
+  form {
+    margin: 0 auto;
+  }
+  form .form-btn input {
+    width: 100%;
+  }
+}

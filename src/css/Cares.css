@@ -191,6 +191,10 @@
 @media only screen and (max-width: 992px) {
   #Cares {
     margin: 0 auto;
+    padding-top: 0px;
+  }
+  .cards {
+    margin-bottom: 20px;
   }
 }
 

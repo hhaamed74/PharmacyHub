@@ -6,7 +6,7 @@ import Helmet from "../../Components/Helmet/Helmet";
 const About = () => {
   return (
     <Helmet title="About Us">
-      <div className="container">
+      <div className="container about">
         <Row>
           <h2 className="about">About Us</h2>
         </Row>
