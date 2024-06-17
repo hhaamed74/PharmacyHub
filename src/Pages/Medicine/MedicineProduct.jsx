@@ -17,9 +17,8 @@ const MedicineProduct = (product) => {
 
   const addToCart = async () => {
     if (product.id === 25) {
-      // عرض رسالة تنبيه للمستخدم هنا
       toast.warning("This product is out of stock");
-      return; // عدم إضافة المنتج للسلة
+      return;
     }
 
     try {

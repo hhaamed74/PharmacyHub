@@ -86,7 +86,14 @@ const Search = () => {
         console.error("Error fetching data:", error);
       }
     };
-    fetchDataHandler();
+
+    // Only fetch data if there's a search query
+    if (searchQuery.trim() !== "") {
+      fetchDataHandler();
+    } else {
+      // If no search query, clear the products array
+      setProducts([]);
+    }
   }, [searchQuery]);
 
   // Function to handle search input change
@@ -143,6 +150,7 @@ const Search = () => {
 
       addToCart(staticProduct);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [imageUploaded]);
 
   return (
