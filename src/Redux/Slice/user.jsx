@@ -1,7 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { getCookie } from "../../Routers/ProtectedRoute";
 
-const URL = "https://e-pharmacy.runasp.net/api/account";
+const URL =
+  "https://e-pharmacyhub-edarcdhhakcaeaad.eastus-01.azurewebsites.net/api/account";
 
 // Async thunk for user login
 export const logIn = createAsyncThunk(

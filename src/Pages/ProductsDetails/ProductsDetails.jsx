@@ -35,7 +35,7 @@ const ProductDetail = () => {
     const fetchProduct = async () => {
       try {
         const response = await fetch(
-          `https://e-pharmacy.runasp.net/api/product/${id}`
+          `https://e-pharmacyhub-edarcdhhakcaeaad.eastus-01.azurewebsites.net/api/product/${id}`
         );
         if (!response.ok) {
           throw new Error("Failed to fetch product");

@@ -10,17 +10,25 @@ const Chat = ({ onClose }) => {
   const sendMessage = async () => {
     setLoading(true);
     try {
-      const res = await axios.post("/api/api/Gemini/Text", null, {
-        params: {
-          message: message,
-        },
-        headers: {
-          Accept: "text/plain",
-        },
-      });
-      setResponse(res.data.candidates[0].content);
+      const res = await axios.post(
+        "https://e-pharmacyhub-edarcdhhakcaeaad.eastus-01.azurewebsites.net/api/Gemini/Text",
+        null,
+        {
+          params: { message },
+          headers: { Accept: "text/plain" },
+        }
+      );
+
+      console.log(res.data);
+      const content = res.data.candidates
+        ? res.data.candidates[0].content
+        : "No response";
+      setResponse(
+        typeof content === "object" ? JSON.stringify(content) : content
+      );
     } catch (error) {
       console.error("Error sending message:", error);
+      setResponse("Error sending message");
     } finally {
       setLoading(false);
     }
@@ -34,9 +42,6 @@ const Chat = ({ onClose }) => {
           &times;
         </button>
       </div>
-      <div className="chat-body">
-        {response && <div className="response">{response}</div>}
-      </div>
       <div className="chat-footer">
         <input
           type="text"
@@ -47,6 +52,16 @@ const Chat = ({ onClose }) => {
         <button onClick={sendMessage} disabled={loading}>
           {loading ? "Sending..." : "Send"}
         </button>
+      </div>
+      <div className="chat-body">
+        {response && (
+          <textarea
+            className="response-textarea"
+            value={response}
+            readOnly
+            rows={Math.max(2, response.split("\n").length)}
+          />
+        )}
       </div>
     </div>
   );

@@ -10,7 +10,7 @@ export const fetchDeliveryMethods = createAsyncThunk(
     const token = await getCookie("token");
     // Send GET request to fetch delivery methods
     const response = await axios.get(
-      "https://e-pharmacy.runasp.net/api/Orders/DeliveryMethods",
+      "https://e-pharmacyhub-edarcdhhakcaeaad.eastus-01.azurewebsites.net/api/Orders/DeliveryMethods",
       {
         headers: {
           "Content-Type": "application/json; charset=utf-8",

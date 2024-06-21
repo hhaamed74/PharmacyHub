@@ -18,7 +18,7 @@ const CategoryView = ({ categoryId, categoryName, ViewComponent }) => {
     try {
       // API call to fetch products by category ID
       const response = await fetch(
-        `https://e-pharmacy.runasp.net/api/product?CategoryId=${categoryId}`
+        `https://e-pharmacyhub-edarcdhhakcaeaad.eastus-01.azurewebsites.net/api/product?CategoryId=${categoryId}`
       );
       const Product = await response.json();
 

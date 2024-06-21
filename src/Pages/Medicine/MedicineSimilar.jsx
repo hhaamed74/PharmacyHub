@@ -40,7 +40,7 @@ const MedicineSimilar = ({ id, category }) => {
           }
 
           const response = await fetch(
-            `https://e-pharmacy.runasp.net/api/product?CategoryId=1&DiseaseId=${diseaseId}`
+            `https://e-pharmacyhub-edarcdhhakcaeaad.eastus-01.azurewebsites.net/api/product?CategoryId=1&DiseaseId=${diseaseId}`
           );
           if (!response.ok) {
             throw new Error("Failed to fetch similar medicines");

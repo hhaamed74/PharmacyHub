@@ -63,7 +63,8 @@ const Search = () => {
   useEffect(() => {
     const fetchDataHandler = async () => {
       try {
-        let apiUrl = "https://e-pharmacy.runasp.net/api/product";
+        let apiUrl =
+          "https://e-pharmacyhub-edarcdhhakcaeaad.eastus-01.azurewebsites.net/api/product";
         if (searchQuery.trim() !== "") {
           apiUrl += `?search=${searchQuery}`;
         }

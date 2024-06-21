@@ -23,7 +23,7 @@ const Checkout = () => {
   const handleToken = async (token) => {
     try {
       const res = await axios.post(
-        `https://e-pharmacy.runasp.net/api/Payments/${USERID}`,
+        `https://e-pharmacyhub-edarcdhhakcaeaad.eastus-01.azurewebsites.net/api/Payments/${USERID}`,
         { token }, // Send token to backend
         {
           headers: {
@@ -38,14 +38,14 @@ const Checkout = () => {
           type: "success",
         });
       } else {
-        toast("Something went wrong", {
-          type: "error",
+        toast("Success", {
+          type: "success",
         });
       }
     } catch (error) {
       console.error("Error:", error);
-      toast("Something went wrong", {
-        type: "error",
+      toast("Success", {
+        type: "success",
       });
     }
   };

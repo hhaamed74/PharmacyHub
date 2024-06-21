@@ -13,7 +13,7 @@ const CardsDetails = () => {
   async function fetchDataHandler() {
     try {
       const response = await fetch(
-        "https://e-pharmacy.runasp.net/api/Product/Categories"
+        "https://e-pharmacyhub-edarcdhhakcaeaad.eastus-01.azurewebsites.net/api/Product/Categories"
       );
       if (!response.ok) {
         throw new Error("Failed to fetch data");
@@ -45,9 +45,13 @@ const CardsDetails = () => {
         <Row>
           {categories.map((category, index) => (
             <Col lg="3" md="6" key={index} id="cards">
-              <Card id="card-main" onClick={() => handleClick(category.id)} className="cursor-pointer">
+              <Card
+                id="card-main"
+                onClick={() => handleClick(category.id)}
+                className="cursor-pointer"
+              >
                 <Card.Body id="card-details">
-                  <div >
+                  <div>
                     <img src={category.pictureUrl} alt={category.name} />
                     <Link to={`/${category.id}`}>
                       <p

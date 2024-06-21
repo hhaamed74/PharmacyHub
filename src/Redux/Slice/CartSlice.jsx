@@ -2,7 +2,8 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { getCookie } from "../../Routers/ProtectedRoute";
 const token = getCookie("token"); // Get token from cookie
 
-const URL = "https://e-pharmacy.runasp.net/api/Basket";
+const URL =
+  "https://e-pharmacyhub-edarcdhhakcaeaad.eastus-01.azurewebsites.net/api/Basket";
 
 const initialState = {
   cart: {
