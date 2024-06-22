@@ -15,16 +15,8 @@ const Chat = () => {
   }, []);
 
   useEffect(() => {
-    // Save only question texts in localStorage
-    localStorage.setItem(
-      "chatHistory",
-      JSON.stringify(
-        chatHistory.map((entry) => ({
-          question: entry.question,
-          date: entry.date,
-        }))
-      )
-    );
+    // Save question, answer, and date in localStorage
+    localStorage.setItem("chatHistory", JSON.stringify(chatHistory));
   }, [chatHistory]);
 
   const getCurrentDate = () => {
@@ -67,13 +59,21 @@ const Chat = () => {
   };
 
   const formatResponse = (content) => {
-    if (typeof content === "object") {
-      // If content is an object (likely code), stringify it
-      return JSON.stringify(content, null, 2);
+    if (content && content.parts && content.parts.length > 0) {
+      return content.parts[0].text.trim();
     } else {
-      // Otherwise, treat it as plain text
-      return content;
+      return "No response";
     }
+  };
+
+  const toggleAnswer = (index) => {
+    const updatedHistory = chatHistory.map((entry, i) => {
+      if (i === index) {
+        return { ...entry, isOpen: !entry.isOpen };
+      }
+      return entry;
+    });
+    setChatHistory(updatedHistory);
   };
 
   const getTodayAndYesterdayQuestions = () => {
@@ -96,6 +96,34 @@ const Chat = () => {
           <div key={index} className="sidebar-entry">
             <div>{entry.date}</div>
             <div>{entry.question}</div>
+            {entry.isOpen ? (
+              <div className="answer">
+                <p>{entry.answer}</p>
+                <button
+                  style={{
+                    background: "#008829",
+                    color: "#ffffff",
+                    padding: "10px",
+                    borderRadius: "6px",
+                  }}
+                  onClick={() => toggleAnswer(index)}
+                >
+                  Close
+                </button>
+              </div>
+            ) : (
+              <button
+                style={{
+                  background: "#008829",
+                  color: "#ffffff",
+                  padding: "10px",
+                  borderRadius: "6px",
+                }}
+                onClick={() => toggleAnswer(index)}
+              >
+                Open Answer
+              </button>
+            )}
           </div>
         ))}
       </div>
