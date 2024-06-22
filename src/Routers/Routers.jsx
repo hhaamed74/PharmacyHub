@@ -17,7 +17,7 @@ import Profile from "../Pages/Profile/Profile";
 import ChangePassword from "../Pages/change-password/ChangePassword";
 import CategoryView from "../Pages/CategoryView/CategoryView";
 import ProtectedRoute from "./ProtectedRoute";
-
+import Chat from "../Components/Chat/Chat";
 const Routers = () => {
   return (
     <Routes>
@@ -43,6 +43,7 @@ const Routers = () => {
       <Route path="/product/:id" element={<ProductsDetails />} />
       <Route path="/category/:categoryId" element={<CategoryView />} />
       <Route path="/medicine/:id" element={<Medicine />} />
+      <Route path="/chat" element={<Chat />} />
 
       {/* New route for product details */}
     </Routes>

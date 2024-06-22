@@ -30,6 +30,7 @@ const Footer = () => {
           <Link to="/contact">Contact Us</Link>
           <Link to="/about">About Us</Link>
           <Link to="/equipments">Equipments</Link>
+          <Link to="/chat">Chat</Link>
         </Col>
         <Col lg="4" sm="12" id="last-col">
           <a href="/">

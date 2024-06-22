@@ -6,8 +6,6 @@ import {
   faPills,
   faHeart,
   faHouse,
-  faAddressBook,
-  faAddressCard,
 } from "@fortawesome/free-solid-svg-icons";
 
 export const nav__link = [

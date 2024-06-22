@@ -1,13 +1,13 @@
 import React, { Fragment, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Layout from "./Components/Layout/Layout";
 import { Hourglass } from "react-loader-spinner";
 import "./App.css";
-import Chat from "./Components/Chat/Chat";
 
 const App = () => {
   const [buttonTop, setButtonTop] = useState(false);
-  const [showChat, setShowChat] = useState(false);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,8 +31,6 @@ const App = () => {
     }, 5000);
   }, []);
 
-  const closeChat = () => setShowChat(false);
-
   return (
     <div>
       {loading ? (
@@ -54,13 +52,9 @@ const App = () => {
       ) : (
         <Fragment>
           <Layout />
-          <button
-            className="chat-button"
-            onClick={() => setShowChat(!showChat)}
-          >
+          <button className="chat-button" onClick={() => navigate("/chat")}>
             Chat
           </button>
-          {showChat && <Chat onClose={closeChat} />}
         </Fragment>
       )}
       {buttonTop && (
