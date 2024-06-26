@@ -12,10 +12,19 @@ const Chat = () => {
     if (storedChatHistory) {
       setChatHistory(JSON.parse(storedChatHistory));
     }
+
+    const handleBeforeUnload = () => {
+      localStorage.removeItem("chatHistory");
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
   }, []);
 
   useEffect(() => {
-    // Save question, answer, and date in localStorage
     localStorage.setItem("chatHistory", JSON.stringify(chatHistory));
   }, [chatHistory]);
 
@@ -47,6 +56,7 @@ const Chat = () => {
         question: message,
         answer: responseText,
         date: getCurrentDate(),
+        isOpen: false,
       };
 
       setChatHistory([...chatHistory, newChatEntry]);
