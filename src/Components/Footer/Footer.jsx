@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import {
   appstore,
   googleplay,
-  logo,
+  pharmacyHub,
   faceBook,
   Google,
   x,
@@ -18,7 +18,7 @@ const Footer = () => {
       <Row id="footer-row">
         <Col lg="4" sm="12" id="first-col">
           <Link to="home">
-            <img src={logo} alt="logo" />
+            <img src={pharmacyHub} alt="logo" />
           </Link>
           <Link to="/home">Home</Link>
           <Link to="/cares">Cares</Link>

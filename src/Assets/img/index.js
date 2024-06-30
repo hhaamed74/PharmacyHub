@@ -1,4 +1,4 @@
-import logo from "./pharmacy-hub.svg";
+import pharmacyHub from "./pharmacy-hub.svg";
 import cart from "./cart-icon.png";
 import sign from "./sign up icon.png";
 import Ads from "./Ads.png";
@@ -13,7 +13,7 @@ import faceBook from "./Group 2.png";
 import x from "./Group 1.png";
 import Google from "./Group 3.png";
 export {
-  logo,
+  pharmacyHub,
   cart,
   sign,
   Ads,

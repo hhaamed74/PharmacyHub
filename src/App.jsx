@@ -36,7 +36,7 @@ const App = () => {
       {loading ? (
         <div className="spinner-container">
           <div className="text">
-            <h1>PharmacyHub</h1>
+            <h1>E-pharmacyHub</h1>
           </div>
           <Hourglass
             id="spinner"

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { NavLink, useNavigate, Link } from "react-router-dom";
-import { logo } from "../../Assets/img/index";
+import { pharmacyHub } from "../../Assets/img/index";
 import userIcon from "../../Assets/img/user-icon-1024x1024-dtzturco.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useSelector } from "react-redux";
@@ -45,7 +45,7 @@ const Header = () => {
               <img
                 whiletap={{ scale: 1.1 }}
                 className="logo"
-                src={logo}
+                src={pharmacyHub}
                 alt="logo"
               />
             </NavLink>
@@ -66,7 +66,7 @@ const Header = () => {
                   <img
                     whiletap={{ scale: 1.1 }}
                     className="logo"
-                    src={logo}
+                    src={pharmacyHub}
                     alt="logo"
                   />
                 </Link>
